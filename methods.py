@@ -4,16 +4,23 @@ Created on Tue Jun 15 23:33:14 2021
 
 @author: User
 """
+import re
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 
-#Loading the model
-from keras.models import load_model
+sw = set(stopwords.words('english'))
+ps = PorterStemmer()
 
-model = load_model('movie_review_prediction.h5')
-
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-tfidf = TfidfTransformer()
-cv = CountVectorizer(max_df = 0.5, max_features=50000)
-
+def clean_text(sample):
+    sample = sample.lower()
+    #removing all <br> tags in the review
+    sample = sample.replace("<br /><br />", "")
+    #removing all special characters from the review
+    sample = re.sub("[^a-zA-Z]+", " ", sample)    
+    sample = sample.split()
+    sample = [ps.stem(s) for s in sample if s not in sw] # list comprehension
+    sample = " ".join(sample)
+    return sample
 
 #Method to clean the input and return the prediction
 def predictions(df):

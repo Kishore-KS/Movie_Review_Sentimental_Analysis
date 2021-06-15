@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import methods
 
 #Reading the training data
 dataset = pd.read_csv("./Train/Train.csv")
@@ -10,25 +11,7 @@ le = LabelEncoder()
 y = dataset['label'].values
 y = le.fit_transform(y)
 
-import re
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-
-sw = set(stopwords.words('english'))
-ps = PorterStemmer()
-
-def clean_text(sample):
-    sample = sample.lower()
-    #removing all <br> tags in the review
-    sample = sample.replace("<br /><br />", "")
-    #removing all special characters from the review
-    sample = re.sub("[^a-zA-Z]+", " ", sample)    
-    sample = sample.split()
-    sample = [ps.stem(s) for s in sample if s not in sw] # list comprehension
-    sample = " ".join(sample)
-    return sample
-
-dataset['cleaned_review'] =  dataset['review'].apply(clean_text)
+dataset['cleaned_review'] =  dataset['review'].apply(methods.clean_text)
 corpus = dataset['cleaned_review'].values
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
