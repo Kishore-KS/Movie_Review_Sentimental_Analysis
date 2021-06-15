@@ -1,30 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 15 23:33:14 2021
+Created on Wed Jun 16 00:55:41 2021
 
 @author: User
 """
-import re
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 
-sw = set(stopwords.words('english'))
-ps = PorterStemmer()
+import pickle
 
-def clean_text(sample):
-    sample = sample.lower()
-    #removing all <br> tags in the review
-    sample = sample.replace("<br /><br />", "")
-    #removing all special characters from the review
-    sample = re.sub("[^a-zA-Z]+", " ", sample)    
-    sample = sample.split()
-    sample = [ps.stem(s) for s in sample if s not in sw] # list comprehension
-    sample = " ".join(sample)
-    return sample
+#Loading the model
+with open('model.pkl', 'rb') as f:
+    model, cv, tfidf = pickle.load(f)
+
+import Clean
 
 #Method to clean the input and return the prediction
 def predictions(df):
-    df['cleaned_review'] = df['review'].apply(clean_text)
+    df['cleaned_review'] = df['review'].apply(Clean.clean_text)
     cleaned_reviews = df['cleaned_review']
     cleaned_reviews = cv.fit_transform(cleaned_reviews)
     cleaned_reviews = tfidf.fit_transform(cleaned_reviews)

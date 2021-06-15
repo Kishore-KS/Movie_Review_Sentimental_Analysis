@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import methods
+import Clean
 
 #Reading the training data
 dataset = pd.read_csv("./Train/Train.csv")
@@ -11,7 +11,7 @@ le = LabelEncoder()
 y = dataset['label'].values
 y = le.fit_transform(y)
 
-dataset['cleaned_review'] =  dataset['review'].apply(methods.clean_text)
+dataset['cleaned_review'] =  dataset['review'].apply(Clean.clean_text)
 corpus = dataset['cleaned_review'].values
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
@@ -48,6 +48,11 @@ X_val.sort_indices()
 hist = model.fit(X_train, y_train, batch_size=128, epochs=2, validation_data=(X_val, y_val), shuffle=True)
 print(model.evaluate(X_val, y_val))
 
-model.save('movie_review_prediction.h5')
+#Dumping the model
+import pickle
+
+pickle.dump(model, open('model.pkl','wb'))
+pickle.dump(model, open('cv.pkl','wb'))
+pickle.dump(model, open('tfidf.pkl','wb'))
 
 
