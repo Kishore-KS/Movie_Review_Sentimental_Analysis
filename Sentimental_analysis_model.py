@@ -51,8 +51,11 @@ print(model.evaluate(X_val, y_val))
 #Dumping the model
 import pickle
 
+print("Dumping model")
 pickle.dump(model, open('model.pkl','wb'))
-pickle.dump(model, open('cv.pkl','wb'))
-pickle.dump(model, open('tfidf.pkl','wb'))
+print("Dumping cv")
+pickle.dump(cv, open('cv.pkl','wb'))
+print("Dumping tfidf")
+pickle.dump(tfidf, open('tfidf.pkl','wb'))
 
 
