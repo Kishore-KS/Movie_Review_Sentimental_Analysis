@@ -4,7 +4,6 @@ Created on Tue Jun 15 21:07:21 2021
 
 @author: User
 """
-import pandas as pd
 import methods
 
 '''string_input = input("Enter your review: ")
@@ -24,8 +23,7 @@ def gfg():
     if request.method == "POST":
        # getting input with name = fname in HTML form
        review = request.form.get("review")
-       string_df = pd.DataFrame([review],columns=["review"])
-       y_pred = methods.predictions(string_df)
+       y_pred = methods.predictions(review)
        review_class = methods.review_classification(y_pred)
        return "Your review classification ",y_pred," ",review_class
     return render_template("index.html")

@@ -6,19 +6,23 @@ Created on Wed Jun 16 00:55:41 2021
 """
 
 import pickle
+from keras.models import load_model
 
 #Loading the model
-with open('model.pkl', 'rb') as f:
-    model, cv, tfidf = pickle.load(f)
+model = load_model('models/movie_review_prediction.h5')
+tfidf = pickle.load(open("models/tfidf.pkl", "rb"))
+cv = pickle.load(open("models/cv.pkl", "rb"))
 
 import Clean
 
+import pandas as pd
 #Method to clean the input and return the prediction
-def predictions(df):
+def predictions(review):
+    df = pd.DataFrame([review],columns=["review"])
     df['cleaned_review'] = df['review'].apply(Clean.clean_text)
     cleaned_reviews = df['cleaned_review']
-    cleaned_reviews = cv.fit_transform(cleaned_reviews)
-    cleaned_reviews = tfidf.fit_transform(cleaned_reviews)
+    cleaned_reviews = cv.transform(cleaned_reviews)
+    cleaned_reviews = tfidf.transform(cleaned_reviews)
     cleaned_reviews.sort_indices()
     pred = model.predict(cleaned_reviews)
     return pred
