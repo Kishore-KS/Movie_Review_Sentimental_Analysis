@@ -31,8 +31,8 @@ pos_neg = {0 : 'negative' , 1 : 'positive'}
 
 #Method to print whether the predictions was +ive or -ive
 def review_classification(y_pred):
-    print(y_pred)
+    pred_p = str(y_pred)
     y_pred[ y_pred >= 0.5 ]  =  1
     review_class = y_pred.astype('int')
     review_class = [ pos_neg[p[0]] for p in review_class ]
-    print(review_class)
+    return pred_p, str(review_class[0])
