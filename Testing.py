@@ -9,4 +9,6 @@ import Predictions
 reviews = input("Enter your review: ")
 
 pred = Predictions.predictions(reviews)
-print(Predictions.review_classification(pred))
+op = Predictions.review_classification(pred)
+print(op[0]," ",op[1])
+#print(pred," ",Predictions.review_classification(pred))
