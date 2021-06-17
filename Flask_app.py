@@ -10,15 +10,17 @@ app = Flask(__name__)
 
 import Predictions
 
-@app.route('/', methods =["GET", "POST"])
-def gfg():
-    if request.method == "POST":
-       # getting input with name = fname in HTML form
-       review = request.form.get("review")
-       pred = Predictions.predictions(review)
-       review_class = Predictions.review_classification(pred)
-       return "The review has a "+review_class[0]+" probability of being "+review_class[1]
+@app.route('/')
+def index():
     return render_template("index.html")
+
+@app.route('/predict', methods =["GET", "POST"])
+def predict():
+    review = request.form.get("review")
+    pred = Predictions.predictions(review)
+    review_class = Predictions.review_classification(pred)
+    output = "The review has a "+review_class[0]+" probability of being "+review_class[1]
+    return render_template("index.html",pred=output)
   
 if __name__=='__main__':
     app.debug = True
