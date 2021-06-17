@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
+* {
+    padding: 0;
+    margin:  0;
+    box-sizing: border-box;
+  }
+
+html {
+    font-family: 'Source Sans Pro';
+    font-size: 24px; 
+}
+
+.hero{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.445),rgba(0, 0, 0, 0.411)),url("./bg.jpeg") no-repeat center / cover;
+    color:white;
+    margin:auto;
+    display: flex;
+    align-items: center;
+}
+
+.container{
+    width: 80%;
+    height: 70%;
+    max-width: 500px;
+    /* position: absolute;
+    top: 100px;
+    left: 269px; */
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(254,254,254,1);
+    color: black;
+    opacity: 1;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 0px 150px rgb(0 0 0);
+    overflow: hidden;
+}
+
+.container .info h1{
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.container .info{
+    max-width: 70%;
+    font-size: 1rem;
+    /* margin-bottom: -2em; */
+}
+
+.wrapper{
+list-style-type: none;
+padding: 0;
+border-radius: 3px;
+}
+.form-row {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding: .5em;
+  }
+
+  .form-row > label {
+    padding: .5em 1em .5em 0;
+    font-weight: 600;
+    flex: 1;
+  }
+  .form-row > input,textarea {
+    flex: 2;
+    width:100%
+  }
+  .form-row > input,textarea{
+    background: #FEFEFE;
+    border: 1px solid #DEDEDE;
+    box-sizing: border-box;
+    font-size: 0.7em;
+    border-radius: 10px;
+    font-family: inherit;
+    padding: .5em;
+    width: 100%
+  }
+
+.form-row> button {
+    text-decoration: none;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 0.75em;
+    outline: 0;
+    width: 10rem;
+    display: inline-block;
+    padding: 0.5em 2em;
+    color: white;
+    background-color: #36324A;
+    /* text-align: center; */
+    cursor: pointer
+}
+.form-row> button:hover {
+    background-color: green;
+    color: white;
+}
