@@ -1,10 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+</head>
 
 <body>
-    <form action="{{ url_for("gfg")}}" method="post">
-        <label for="firstname">Enter review:</label>
-        <input type="text" id="review" name="review" placeholder="Enter your review">
-        <button type="submit">Submit Review</button>
+    <section class="hero">
+        <div class="container">
+            <div class="info">
+                <h1>Movie Review</h1>
+                <form action="/predict" method="post">
+                    <ul class="wrapper">
+                        <li class="form-row">
+                            <label for="movie name">Movie name</label>
+                            <input type="text" id="movie_name" name="movie_name" placeholder="Enter movie name">
+                        </li>
+                        <li class="form-row">
+                            <label for="firstname">Movie review</label>
+                            <textarea id="review" name="review" id="review" placeholder="Enter your review"></textarea>
+                        </li>
+                        <li class="form-row">
+                            <button type="submit">Submit Review</button>
+                        </li>
+                        <li class="form-row">
+                            <b>{{pred}}</b>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+    </section>
+
 </body>
 
 </html>
