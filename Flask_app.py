@@ -19,7 +19,7 @@ def predict():
     review = request.form.get("review")
     pred = Predictions.predictions(review)
     review_class = Predictions.review_classification(pred)
-    output = "The review has a "+review_class[0]+" probability of being "+review_class[1]
+    output = review_class[1]
     return render_template("index.html",pred=output)
   
 if __name__=='__main__':

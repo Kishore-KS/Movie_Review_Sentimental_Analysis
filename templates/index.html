@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <script>
+        let pred = '{{pred}}';
+    </script>
 </head>
 
 <body>
@@ -18,17 +21,17 @@
                     <ul class="wrapper">
                         <li class="form-row">
                             <label for="movie name">Movie name</label>
-                            <input type="text" id="movie_name" name="movie_name" placeholder="Enter movie name">
+                            <input type="text" id="movie_name" name="movie_name" placeholder="Enter movie name" required>
                         </li>
                         <li class="form-row">
                             <label for="firstname">Movie review</label>
-                            <textarea id="review" name="review" id="review" placeholder="Enter your review"></textarea>
+                            <textarea id="review" name="review" placeholder="Enter your review"></textarea>
                         </li>
                         <li class="form-row">
                             <button type="submit">Submit Review</button>
                         </li>
                         <li class="form-row">
-                            <b>{{pred}}</b>
+                            <b id="score">{{pred}}</b>
                         </li>
                     </ul>
                 </form>
